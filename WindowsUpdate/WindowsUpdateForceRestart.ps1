@@ -162,14 +162,16 @@ try {
         Write-Log "HRESULT: $($Result.HResult)"
     }
 
-    # --------------------------------------------------------
-    # Reboot detection
-    # --------------------------------------------------------
+# --------------------------------------------------------
+# Reboot Detection
+# --------------------------------------------------------
 
-    if ($InstallResult.RebootRequired) {
+if ($InstallResult.RebootRequired) {
 
     Write-Log "A system restart is required." "WARNING"
+    Write-Log "Windows Update maintenance completed."
     Write-Log "Computer will restart automatically in 60 seconds." "WARNING"
+    Write-Log "============================================================"
 
     Start-Sleep -Seconds 60
 
@@ -178,12 +180,10 @@ try {
 else {
 
     Write-Log "No restart is currently required."
+    
 }
 
-    Write-Log "Windows Update maintenance completed."
-    Write-Log "============================================================"
-
-    exit 0
+exit 0
 }
 
 catch {
